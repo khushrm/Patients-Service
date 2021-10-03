@@ -1,0 +1,12 @@
+D:\mkr\patientService\PatientServiceSln\PatientService.Data\bin\Debug\netcoreapp3.1\PatientService.Data.deps.json
+D:\mkr\patientService\PatientServiceSln\PatientService.Data\bin\Debug\netcoreapp3.1\PatientService.Data.dll
+D:\mkr\patientService\PatientServiceSln\PatientService.Data\bin\Debug\netcoreapp3.1\PatientService.Data.pdb
+D:\mkr\patientService\PatientServiceSln\PatientService.Data\bin\Debug\netcoreapp3.1\PatientService.Domain.dll
+D:\mkr\patientService\PatientServiceSln\PatientService.Data\bin\Debug\netcoreapp3.1\PatientService.Domain.pdb
+D:\mkr\patientService\PatientServiceSln\PatientService.Data\obj\Debug\netcoreapp3.1\PatientService.Data.csproj.AssemblyReference.cache
+D:\mkr\patientService\PatientServiceSln\PatientService.Data\obj\Debug\netcoreapp3.1\PatientService.Data.AssemblyInfoInputs.cache
+D:\mkr\patientService\PatientServiceSln\PatientService.Data\obj\Debug\netcoreapp3.1\PatientService.Data.AssemblyInfo.cs
+D:\mkr\patientService\PatientServiceSln\PatientService.Data\obj\Debug\netcoreapp3.1\PatientService.Data.csproj.CoreCompileInputs.cache
+D:\mkr\patientService\PatientServiceSln\PatientService.Data\obj\Debug\netcoreapp3.1\PatientService.Data.csproj.CopyComplete
+D:\mkr\patientService\PatientServiceSln\PatientService.Data\obj\Debug\netcoreapp3.1\PatientService.Data.dll
+D:\mkr\patientService\PatientServiceSln\PatientService.Data\obj\Debug\netcoreapp3.1\PatientService.Data.pdb
