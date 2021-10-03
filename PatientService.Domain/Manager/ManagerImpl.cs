@@ -21,7 +21,7 @@ namespace PatientService.Domain.Manager
 
         public void AddPatient(PatientApiModel p)
         {
-            var t = _mapper.Map<Patient>(p);
+            var t = new Patient { Name = p.Name, Email = p.Email, BloodGroup = p.BloodGroup, DateOfBirth = p.DateOfBirth, MobileNumber = p.MobileNumber };
             _repo.AddPatient(t);
         }
 
@@ -35,7 +35,13 @@ namespace PatientService.Domain.Manager
 
         public PatientApiModel EditPatient(int id, PatientApiModel p)
         {
-            var t = _mapper.Map<Patient>(p);
+            var t = _repo.GetPatient(id).Result;
+            t.Name = p.Name;
+            t.MobileNumber = p.MobileNumber;
+            t.Email = p.Email;
+            t.DateOfBirth = p.DateOfBirth;
+            t.BloodGroup = p.BloodGroup;
+            t.MedicalIssues = p.MedicalIssues;
             var patient = _repo.EditPatient(id, t);
 
             return _mapper.Map<PatientApiModel>(patient);

@@ -48,7 +48,7 @@ namespace PatientService.Data.ReposiotryEF
             var p = _context.Patients.Find(id);
 
             _context.Patients.Remove(p);
-
+            _context.SaveChanges();
             return p;
         }
     }

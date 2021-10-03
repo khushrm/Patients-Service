@@ -68,3 +68,5 @@ D:\mkr\patientService\PatientServiceSln\PatientService.Api\obj\Debug\netcoreapp3
 D:\mkr\patientService\PatientServiceSln\PatientService.Api\obj\Debug\netcoreapp3.1\PatientService.Api.genruntimeconfig.cache
 D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\AutoMapper.dll
 D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\Humanizer.dll
+D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll

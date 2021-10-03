@@ -46,6 +46,7 @@ namespace PatientService.Api.Controllers
         }
 
         [HttpDelete]
+        [Route("{id}")]
         public PatientApiModel Delete(int id)
         {
             return _manager.DeletePatient(id);
