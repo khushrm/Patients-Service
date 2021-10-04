@@ -11,9 +11,9 @@ namespace PatientService.Domain.Manager
     {
         Task<ICollection<PatientApiModel>> GetPatients();
         Task<PatientApiModel> GetPatient(int id);
-
-        void AddPatient(PatientApiModel p);
-        PatientApiModel EditPatient(int id, PatientApiModel p);
-        PatientApiModel DeletePatient(int id);
+        Task<ICollection<PatientApiModel>> GetPatient(string name);
+        Task<PatientApiModel> AddPatient(PatientApiModel p);
+        Task<PatientApiModel> EditPatient(int id, PatientApiModel p);
+        Task<PatientApiModel> DeletePatient(int id);
     }
 }

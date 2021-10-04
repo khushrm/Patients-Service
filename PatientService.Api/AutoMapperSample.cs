@@ -13,6 +13,7 @@ namespace PatientService.Api
         public AutoMapperSample()
         {
             CreateMap<Patient, PatientApiModel>();
+            CreateMap<PatientApiModel, Patient>();
         }
     }
 }

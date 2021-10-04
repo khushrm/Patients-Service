@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientService.Api", "PatientService.Api\PatientService.Api.csproj", "{B5E6E574-F39B-455A-9346-D41BD282C098}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatientService.Api", "PatientService.Api\PatientService.Api.csproj", "{B5E6E574-F39B-455A-9346-D41BD282C098}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientService.Domain", "PatientService.Domain\PatientService.Domain.csproj", "{F2CC49D6-9545-43E6-8BB7-084E53E6C582}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatientService.Domain", "PatientService.Domain\PatientService.Domain.csproj", "{F2CC49D6-9545-43E6-8BB7-084E53E6C582}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientService.Data", "PatientService.Data\PatientService.Data.csproj", "{B64FD8B8-79AD-4F0C-B9E1-EF65F11CF1E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatientService.Data", "PatientService.Data\PatientService.Data.csproj", "{B64FD8B8-79AD-4F0C-B9E1-EF65F11CF1E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientService.UnitTest", "PatientService.UnitTest\PatientService.UnitTest.csproj", "{B179F7B4-B4F4-4608-AD10-94674FFCFF0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,18 @@ Global
 		{B64FD8B8-79AD-4F0C-B9E1-EF65F11CF1E4}.Release|x64.Build.0 = Release|Any CPU
 		{B64FD8B8-79AD-4F0C-B9E1-EF65F11CF1E4}.Release|x86.ActiveCfg = Release|Any CPU
 		{B64FD8B8-79AD-4F0C-B9E1-EF65F11CF1E4}.Release|x86.Build.0 = Release|Any CPU
+		{B179F7B4-B4F4-4608-AD10-94674FFCFF0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B179F7B4-B4F4-4608-AD10-94674FFCFF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B179F7B4-B4F4-4608-AD10-94674FFCFF0E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B179F7B4-B4F4-4608-AD10-94674FFCFF0E}.Debug|x64.Build.0 = Debug|Any CPU
+		{B179F7B4-B4F4-4608-AD10-94674FFCFF0E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B179F7B4-B4F4-4608-AD10-94674FFCFF0E}.Debug|x86.Build.0 = Debug|Any CPU
+		{B179F7B4-B4F4-4608-AD10-94674FFCFF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B179F7B4-B4F4-4608-AD10-94674FFCFF0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B179F7B4-B4F4-4608-AD10-94674FFCFF0E}.Release|x64.ActiveCfg = Release|Any CPU
+		{B179F7B4-B4F4-4608-AD10-94674FFCFF0E}.Release|x64.Build.0 = Release|Any CPU
+		{B179F7B4-B4F4-4608-AD10-94674FFCFF0E}.Release|x86.ActiveCfg = Release|Any CPU
+		{B179F7B4-B4F4-4608-AD10-94674FFCFF0E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -30,9 +30,6 @@
             "projectReferences": {
               "D:\\mkr\\patientService\\PatientServiceSln\\PatientService.Data\\PatientService.Data.csproj": {
                 "projectPath": "D:\\mkr\\patientService\\PatientServiceSln\\PatientService.Data\\PatientService.Data.csproj"
-              },
-              "D:\\mkr\\patientService\\PatientServiceSln\\PatientService.Domain\\PatientService.Domain.csproj": {
-                "projectPath": "D:\\mkr\\patientService\\PatientServiceSln\\PatientService.Domain\\PatientService.Domain.csproj"
               }
             }
           }
@@ -47,9 +44,9 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
-            "Microsoft.AspNet.WebApi.Core": {
+            "Microsoft.AspNetCore.OData": {
               "target": "Package",
-              "version": "[5.2.7, )"
+              "version": "[8.0.3, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -70,6 +67,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.10, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.2, )"
             }
           },
           "imports": [

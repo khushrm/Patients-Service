@@ -20,36 +20,63 @@ namespace PatientService.Api.Controllers
         {
             _manager = manager;
         }
+        [HttpGet]
         public async Task<ICollection<PatientApiModel>> Get()
         {
             var patients = await _manager.GetPatients();
 
             return patients;
         }
+        [HttpGet]
         [Route("{id}")]
-        public async Task<PatientApiModel> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var patient = await _manager.GetPatient(id);
-
-            return patient;
+            if(patient == null)
+            {
+                return NotFound();
+            }
+            return Ok(patient);
+        }
+        [HttpGet]
+        [Route("{name}")]
+        public async Task<IActionResult> Get(string name)
+        {
+            var patients = await _manager.GetPatient(name);
+            
+            return Ok(patients);
         }
         [HttpPost]
-        public void Post([FromBody] PatientApiModel patient)
+        public async Task<IActionResult> Post([FromBody] PatientApiModel patient)
         {
-            _manager.AddPatient(patient);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var p = await _manager.AddPatient(patient);
+
+            return Ok(p);
         }
         [HttpPut]
         [Route("{id}")]
-        public PatientApiModel Put(int id, PatientApiModel p)
+        public async Task<IActionResult> Put(int id, PatientApiModel p)
         {
-            return _manager.EditPatient(id, p);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var patient = await _manager.EditPatient(id, p);
+
+            return Ok(patient);
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public PatientApiModel Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return _manager.DeletePatient(id);
+            var p =  await _manager.DeletePatient(id);
+
+            return Ok(p);
         }
     }
 }

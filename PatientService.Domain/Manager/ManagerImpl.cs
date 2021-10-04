@@ -19,30 +19,34 @@ namespace PatientService.Domain.Manager
             _mapper = mapper;
         }
 
-        public void AddPatient(PatientApiModel p)
+        public async Task<PatientApiModel> AddPatient(PatientApiModel p)
         {
-            var t = new Patient { Name = p.Name, Email = p.Email, BloodGroup = p.BloodGroup, DateOfBirth = p.DateOfBirth, MobileNumber = p.MobileNumber };
-            _repo.AddPatient(t);
+            //var t = new Patient { Name = p.Name, Email = p.Email, BloodGroup = p.BloodGroup, DateOfBirth = p.DateOfBirth, MobileNumber = p.MobileNumber };
+            var t = _mapper.Map<Patient>(p);
+            t = await _repo.AddPatient(t);
+
+            return _mapper.Map<PatientApiModel>(t);
         }
 
-        public PatientApiModel DeletePatient(int id)
+        public async Task<PatientApiModel> DeletePatient(int id)
         {
-            var patient = _repo.DeletePatient(id);
+            var patient = await _repo.DeletePatient(id);
 
             return _mapper.Map<PatientApiModel>(patient);
 
         }
 
-        public PatientApiModel EditPatient(int id, PatientApiModel p)
+        public async Task<PatientApiModel> EditPatient(int id, PatientApiModel p)
         {
-            var t = _repo.GetPatient(id).Result;
+            /*var t = _repo.GetPatient(id).Result;
             t.Name = p.Name;
             t.MobileNumber = p.MobileNumber;
             t.Email = p.Email;
             t.DateOfBirth = p.DateOfBirth;
             t.BloodGroup = p.BloodGroup;
-            t.MedicalIssues = p.MedicalIssues;
-            var patient = _repo.EditPatient(id, t);
+            t.MedicalIssues = p.MedicalIssues;*/
+            var t = _mapper.Map<Patient>(p);
+            var patient = await _repo.EditPatient(id, t);
 
             return _mapper.Map<PatientApiModel>(patient);
         }
@@ -52,6 +56,19 @@ namespace PatientService.Domain.Manager
             var patient = await _repo.GetPatient(id);
 
             return _mapper.Map<PatientApiModel>(patient);
+        }
+        public async Task<ICollection<PatientApiModel>> GetPatient(string name)
+        {
+            var patients = await _repo.GetPatient(name);
+
+            var patientsapi = new List<PatientApiModel>();
+
+            foreach (var p in patients)
+            {
+                patientsapi.Add(_mapper.Map<PatientApiModel>(p));
+            }
+
+            return patientsapi;
         }
 
         public async Task<ICollection<PatientApiModel>> GetPatients()

@@ -11,10 +11,11 @@ namespace PatientService.Domain.Repository
         #region async methods
         Task<ICollection<Patient>> GetPatients();
         Task<Patient> GetPatient(int id);
+        Task<List<Patient>> GetPatient(string name);
 
-        void AddPatient(Patient p);
-        Patient EditPatient(int id, Patient p);
-        Patient DeletePatient(int id);
+        Task<Patient> AddPatient(Patient p);
+        Task<Patient> EditPatient(int id, Patient p);
+        Task<Patient> DeletePatient(int id);
         #endregion
     }
 }
