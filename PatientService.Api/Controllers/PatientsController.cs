@@ -20,63 +20,121 @@ namespace PatientService.Api.Controllers
         {
             _manager = manager;
         }
-        [HttpGet]
-        public async Task<ICollection<PatientApiModel>> Get()
-        {
-            var patients = await _manager.GetPatients();
 
-            return patients;
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                var patients = await _manager.GetPatients();
+
+                return Ok(patients);
+            }
+            catch(Exception e)
+            {
+                // log it
+
+                return BadRequest();
+            }
+            
         }
+
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var patient = await _manager.GetPatient(id);
-            if(patient == null)
+            try
             {
+                var patient = await _manager.GetPatient(id);
+                if (patient == null)
+                {
+                    return NotFound();
+                }
+                return Ok(patient);
+            }
+            catch(Exception e)
+            {
+                //log it
+
                 return NotFound();
             }
-            return Ok(patient);
         }
         [HttpGet]
-        [Route("{name}")]
-        public async Task<IActionResult> Get(string name)
+        [Route("search/{name}")]
+        public async Task<IActionResult> GetPatientsByName(string name)
         {
-            var patients = await _manager.GetPatient(name);
-            
-            return Ok(patients);
+            try
+            {
+                var patients = await _manager.GetPatient(name);
+
+                return Ok(patients);
+            }
+            catch(Exception e)
+            {
+                // log it
+
+                return BadRequest();
+            }
         }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PatientApiModel patient)
         {
-            if (!ModelState.IsValid)
+            try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+                var p = await _manager.AddPatient(patient);
+
+                return Ok(p);
+            }
+            catch(Exception e)
+            {
+                // log it
+
                 return BadRequest();
             }
-            var p = await _manager.AddPatient(patient);
-
-            return Ok(p);
         }
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> Put(int id, PatientApiModel p)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest();
-            }
-            var patient = await _manager.EditPatient(id, p);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+                var patient = await _manager.EditPatient(id, p);
 
-            return Ok(patient);
+                return Ok(patient);
+            }
+            catch(Exception e)
+            {
+                // log it
+
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var p =  await _manager.DeletePatient(id);
+            try
+            {
+                var p = await _manager.DeletePatient(id);
+                return Ok(p);
+            }
+            catch(Exception e)
+            {
+                // log it
 
-            return Ok(p);
+                return BadRequest(e.Message);
+            }
+            
         }
     }
 }

@@ -23,7 +23,10 @@ namespace PatientService.UnitTest.API
 
             // Act
             var result = pc.Get();
-            var patients = result.Result;
+            OkObjectResult objectResult = Assert.IsType<OkObjectResult>(result.Result);
+            //var patients = Assert.IsType<ICollection<PatientApiModel>>(objectResult.Value);
+
+            var patients = objectResult.Value as ICollection<PatientApiModel>;
 
             // Assert
 

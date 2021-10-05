@@ -55,6 +55,8 @@ namespace PatientService.Api
                 });
             });
 
+            services.AddMemoryCache();
+
             
             
         }

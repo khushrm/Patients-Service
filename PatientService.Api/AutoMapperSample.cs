@@ -14,6 +14,8 @@ namespace PatientService.Api
         {
             CreateMap<Patient, PatientApiModel>();
             CreateMap<PatientApiModel, Patient>();
+            CreateMap<MedicalIssuesApiModel, MedicalIssue>();
+            CreateMap<MedicalIssue, MedicalIssuesApiModel>();
         }
     }
 }

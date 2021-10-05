@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Caching.Memory;
 using Moq;
 using PatientService.Api;
 using PatientService.Domain.ApiModels;
@@ -17,8 +18,12 @@ namespace PatientService.UnitTest.Manager
         {
             var mock = new Mock<IPatientRepository>();
             var mockMapper = new Mock<IMapper>();
+            var mockCache = new Mock<IMemoryCache>();
+
             mock.Setup(x => x.GetPatients()).ReturnsAsync(GetPatients());
-            IManager manager = new ManagerImpl(mock.Object, mockMapper.Object);
+
+            IManager manager = new ManagerImpl(mock.Object, mockMapper.Object, mockCache.Object);
+
             var result = manager.GetPatients();
             var patients = result.Result;
 

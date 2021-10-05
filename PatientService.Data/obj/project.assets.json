@@ -1508,7 +1508,8 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "AutoMapper": "10.1.1",
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1"
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
+          "Microsoft.Extensions.Caching.Memory": "5.0.0"
         },
         "compile": {
           "bin/placeholder/PatientService.Domain.dll": {}

@@ -96,5 +96,36 @@ namespace PatientService.Data.ReposiotryEF
             await _context.SaveChangesAsync();
             return p;
         }
+
+        public async Task<ICollection<MedicalIssue>> GetMedicalIssuesByPatientId(int patientId)
+        {
+            var patient = await _context.Patients
+                .Include("MedicalIssues")
+                .Where(x => x.Id == patientId)
+                .FirstOrDefaultAsync();
+
+            if (patient == null)
+                return null;
+
+            return patient.MedicalIssues;
+
+        }
+
+        public async Task<ICollection<MedicalIssue>> AddMedicalIssueToPatient(int patientId,MedicalIssue issue)
+        {
+            var patient = await _context.Patients
+                .Include("MedicalIssues")
+                .Where(x => x.Id == patientId)
+                .FirstOrDefaultAsync();
+
+            if (patient == null)
+                return null;
+
+            patient.MedicalIssues.Add(issue);
+
+            await _context.SaveChangesAsync();
+
+            return patient.MedicalIssues;
+        }
     }
 }

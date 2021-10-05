@@ -1076,7 +1076,8 @@
       "PatientService.Domain/1.0.0": {
         "dependencies": {
           "AutoMapper": "10.1.1",
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1"
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
+          "Microsoft.Extensions.Caching.Memory": "5.0.0"
         },
         "runtime": {
           "PatientService.Domain.dll": {}
