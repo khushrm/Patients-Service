@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "7wmDmDZ22XFM8Vuo6Hg9sn3rjJbaOUjv2i8zOQ2UnrUUJ6yJYXvUoDi6pnrpC1ch0s2lnIdjaaDXD7Lk1lCNdg==",
+  "dgSpecHash": "6vvZ+yPWI7EMls1F3Xy1rTVWoUXAF1unFlRzB4lCPseuGa1Kb1YCXfseAHp0Tt9XsC1+4+WXIZXUCQCICPLKmw==",
   "success": true,
   "projectFilePath": "D:\\mkr\\patientService\\PatientServiceSln\\PatientService.Domain\\PatientService.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\khushal\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\khushal\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\khushal\\.nuget\\packages\\fluentvalidation\\10.3.3\\fluentvalidation.10.3.3.nupkg.sha512",
+    "C:\\Users\\khushal\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.3\\fluentvalidation.aspnetcore.10.3.3.nupkg.sha512",
+    "C:\\Users\\khushal\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.3\\fluentvalidation.dependencyinjectionextensions.10.3.3.nupkg.sha512",
     "C:\\Users\\khushal\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\khushal\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\khushal\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",

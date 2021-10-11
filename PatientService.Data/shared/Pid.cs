@@ -6,6 +6,10 @@ namespace PatientService.Data.shared
 {
     public class Pid
     {
-        public static int Id = 1;
+        private static int Id = 1;
+        public static int GetNewId()
+        {
+            return Id++;
+        }
     }
 }

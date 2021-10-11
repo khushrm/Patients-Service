@@ -48,12 +48,13 @@ namespace PatientService.Domain.Manager
             {
                 var patient = await _repo.DeletePatient(id);
 
+                var patientApiModel = _mapper.Map<PatientApiModel>(patient);
                 if (_cache.Get(string.Concat("Patient-", id)) != null)
                 {
                     _cache.Remove(string.Concat("Patient-", id));
                 }
 
-                return _mapper.Map<PatientApiModel>(patient);
+                return patientApiModel;
             }
 
             catch(Exception e)
@@ -69,10 +70,10 @@ namespace PatientService.Domain.Manager
             {
                 var t = _mapper.Map<Patient>(p);
                 var patient = await _repo.EditPatient(id, t);
+                var patientApiModel = _mapper.Map<PatientApiModel>(patient);
+                _cache.Set(string.Concat("Patient-", id), patientApiModel, DateTimeOffset.Now.AddSeconds(30));
 
-                _cache.Set(string.Concat("Patient-", id), patient, DateTimeOffset.Now.AddSeconds(30));
-
-                return _mapper.Map<PatientApiModel>(patient);
+                return patientApiModel;
             }
             catch(Exception e)
             {
@@ -85,14 +86,15 @@ namespace PatientService.Domain.Manager
         {
             try
             {
-                if (_cache.Get("Patient-" + id) != null)
+                /*if (_cache.Get("Patient-" + id) != null)
                 {
                     return (PatientApiModel)_cache.Get("Patient-" + id);
-                }
+                }*/
                 var patient = await _repo.GetPatient(id);
+                var patientApiModel = _mapper.Map<PatientApiModel>(patient);
 
-                _cache.Set(string.Concat("Patient-", id), patient, DateTimeOffset.Now.AddSeconds(30));
-                return _mapper.Map<PatientApiModel>(patient);
+                //_cache.Set(string.Concat("Patient-", id), patientApiModel, DateTimeOffset.Now.AddSeconds(30));
+                return patientApiModel;
             }
             catch(Exception e)
             {
@@ -132,10 +134,10 @@ namespace PatientService.Domain.Manager
         {
             try
             {
-                if (_cache.Get("Patients") != null)
+                /*if (_cache.Get("Patients") != null)
                 {
                     return _cache.Get("Patients") as ICollection<PatientApiModel>;
-                }
+                }*/
                 var patients = await _repo.GetPatients();
 
                 var patientsapi = new List<PatientApiModel>();
@@ -145,7 +147,7 @@ namespace PatientService.Domain.Manager
                     patientsapi.Add(_mapper.Map<PatientApiModel>(p));
                 }
 
-                _cache.Set("Patients", patientsapi, DateTimeOffset.Now.AddSeconds(30));
+               // _cache.Set("Patients", patientsapi, DateTimeOffset.Now.AddSeconds(30));
 
                 return patientsapi;
             }

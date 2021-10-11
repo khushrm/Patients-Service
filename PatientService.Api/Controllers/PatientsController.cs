@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using PatientService.Domain.ApiModels;
-using PatientService.Domain.Entities;
 using PatientService.Domain.Manager;
-using PatientService.Domain.Repository;
+using PatientService.Domain.Validators;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PatientService.Api.Controllers
@@ -16,13 +13,16 @@ namespace PatientService.Api.Controllers
     public class PatientsController : ControllerBase
     {
         private readonly IManager _manager;
-        public PatientsController(IManager manager)
+        //private ILogger _logger = (ILogger)LogManager.GetLogger("fileLogger");
+        private ILogger _logger;
+        public PatientsController(IManager manager, ILogger logger)
         {
             _manager = manager;
+            _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAllData()
         {
             try
             {
@@ -33,7 +33,7 @@ namespace PatientService.Api.Controllers
             catch(Exception e)
             {
                 // log it
-
+                _logger.LogError(e.Message);
                 return BadRequest();
             }
             
@@ -41,7 +41,7 @@ namespace PatientService.Api.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> GetPatientById(int id)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace PatientService.Api.Controllers
             catch(Exception e)
             {
                 //log it
-
+                _logger.LogError(e.Message);
                 return NotFound();
             }
         }
@@ -72,7 +72,7 @@ namespace PatientService.Api.Controllers
             catch(Exception e)
             {
                 // log it
-
+                _logger.LogError(e.Message);
                 return BadRequest();
             }
         }
@@ -82,9 +82,11 @@ namespace PatientService.Api.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
+                var validator = new PatientApiValidator();
+                var result = validator.Validate(patient);
+                if (!result.IsValid)
                 {
-                    return BadRequest();
+                    return BadRequest(result.Errors);
                 }
                 var p = await _manager.AddPatient(patient);
 
@@ -93,7 +95,7 @@ namespace PatientService.Api.Controllers
             catch(Exception e)
             {
                 // log it
-
+                _logger.LogError(e.Message);
                 return BadRequest();
             }
         }
@@ -114,7 +116,7 @@ namespace PatientService.Api.Controllers
             catch(Exception e)
             {
                 // log it
-
+                _logger.LogError(e.Message);
                 return BadRequest(e.Message);
             }
         }
@@ -131,7 +133,7 @@ namespace PatientService.Api.Controllers
             catch(Exception e)
             {
                 // log it
-
+                _logger.LogError(e.Message);
                 return BadRequest(e.Message);
             }
             

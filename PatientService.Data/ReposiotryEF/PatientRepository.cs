@@ -25,7 +25,10 @@ namespace PatientService.Data.ReposiotryEF
         /// <returns></returns>
         public async Task<Patient> GetPatient(int id)
         {
-            return  await _context.Patients.FindAsync(id);
+            return  await _context.Patients
+                .Include("MedicalIssues")
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
         }
         /// <summary>
         /// list of patients , param is substr in patient name
@@ -34,7 +37,10 @@ namespace PatientService.Data.ReposiotryEF
         /// <returns></returns>
         public async Task<List<Patient>> GetPatient(string name)
         {
-            return await _context.Patients.Where(patient => patient.Name.Contains(name)).ToListAsync();
+            return await _context.Patients
+                .Include("MedicalIssues")
+                .Where(patient => patient.Name.Contains(name))
+                .ToListAsync();
         }
 
         /// <summary>
@@ -54,7 +60,7 @@ namespace PatientService.Data.ReposiotryEF
         /// <returns></returns>
         public async Task<Patient> AddPatient(Patient patient)
         {
-            patient.PId = "P-" + Pid.Id++;
+            patient.PId = "P-" + Pid.GetNewId();
             
             await _context.Patients.AddAsync(patient);
             await _context.SaveChangesAsync();

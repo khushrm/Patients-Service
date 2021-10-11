@@ -78,3 +78,10 @@ D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3
 D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
 D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\Humanizer.dll
 D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\FluentValidation.dll
+D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
+D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
+D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\log4net.dll
+D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
+D:\mkr\patientService\PatientServiceSln\PatientService.Api\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll

@@ -12,6 +12,7 @@ namespace PatientService.Data.ReposiotryEF
         {
 
         }
+        
         public DbSet<Patient> Patients { get; set; }
         public DbSet<MedicalIssue> MedicalIssues { get; set; }
     }

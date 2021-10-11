@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Moq;
 using PatientService.Api.Controllers;
 using PatientService.Domain.ApiModels;
@@ -12,17 +14,18 @@ namespace PatientService.UnitTest.API
     
     public class APIUnitTest
     {
-        
+        public Mock<IManager> mock { set; get; } = new Mock<IManager>();
+        public Mock<ILogger> mockLogger { set; get; } = new Mock<ILogger>();
         [Fact]
         public void GetAllPatients_ShouldReturnAllPatients_Valid()
         {
             // Arrange
-            var mock = new Mock<IManager>();
+            
             mock.Setup(x => x.GetPatients()).ReturnsAsync(GetPatients());
-            PatientsController pc = new PatientsController(mock.Object);
+            PatientsController pc = new PatientsController(mock.Object,mockLogger.Object);
 
             // Act
-            var result = pc.Get();
+            var result = pc.GetAllData();
             OkObjectResult objectResult = Assert.IsType<OkObjectResult>(result.Result);
             //var patients = Assert.IsType<ICollection<PatientApiModel>>(objectResult.Value);
 
@@ -36,11 +39,10 @@ namespace PatientService.UnitTest.API
         [Fact]
         public void GetPatientById_ShouldReturnPatient_ValidId()
         {
-            var mock = new Mock<IManager>();
             mock.Setup(x => x.GetPatient(1)).ReturnsAsync(GetPatients().Where(x => x.Id == 1).FirstOrDefault());
 
-            PatientsController pc = new PatientsController(mock.Object);
-            var result = pc.Get(1);
+            PatientsController pc = new PatientsController(mock.Object,mockLogger.Object);
+            var result = pc.GetPatientById(1);
 
             OkObjectResult objectResult = Assert.IsType<OkObjectResult>(result.Result);
             PatientApiModel patient = Assert.IsType<PatientApiModel>(objectResult.Value);
@@ -50,11 +52,10 @@ namespace PatientService.UnitTest.API
         [Fact]
         public void GetPatientById_ShouldReturnPatient_ValidName()
         {
-            var mock = new Mock<IManager>();
             mock.Setup(x => x.GetPatient(1)).ReturnsAsync(GetPatients().Where(x => x.Id == 1).FirstOrDefault());
 
-            PatientsController pc = new PatientsController(mock.Object);
-            var result = pc.Get(1);
+            PatientsController pc = new PatientsController(mock.Object, mockLogger.Object);
+            var result = pc.GetPatientById(1);
 
             OkObjectResult objectResult = Assert.IsType<OkObjectResult>(result.Result);
             PatientApiModel patient = Assert.IsType<PatientApiModel>(objectResult.Value);
@@ -65,11 +66,10 @@ namespace PatientService.UnitTest.API
         [Fact]
         public void GetPatientById_ShouldReturnPatient_ValidBloodGroup()
         {
-            var mock = new Mock<IManager>();
             mock.Setup(x => x.GetPatient(1)).ReturnsAsync(GetPatients().Where(x => x.Id == 1).FirstOrDefault());
 
-            PatientsController pc = new PatientsController(mock.Object);
-            var result = pc.Get(1);
+            PatientsController pc = new PatientsController(mock.Object, mockLogger.Object);
+            var result = pc.GetPatientById(1);
 
             OkObjectResult objectResult = Assert.IsType<OkObjectResult>(result.Result);
             PatientApiModel patient = Assert.IsType<PatientApiModel>(objectResult.Value);
@@ -80,12 +80,11 @@ namespace PatientService.UnitTest.API
         [Fact]
         public void UpdatePatient_ShouldUpdatePatient_Valid()
         {
-            var mock = new Mock<IManager>();
             var expectedPatientDetails = GetPatients().Where(x => x.Id == 1).FirstOrDefault();
             expectedPatientDetails.Name = "John";
             mock.Setup(x => x.EditPatient(1, expectedPatientDetails)).ReturnsAsync(expectedPatientDetails);
 
-            PatientsController pc = new PatientsController(mock.Object);
+            PatientsController pc = new PatientsController(mock.Object, mockLogger.Object);
             var result =  pc.Put(1, expectedPatientDetails);
             OkObjectResult objectResult = Assert.IsType<OkObjectResult>(result.Result);
             PatientApiModel patient = Assert.IsType<PatientApiModel>(objectResult.Value);
@@ -96,7 +95,6 @@ namespace PatientService.UnitTest.API
         [Fact]
         public void AddPatient_ShouldAddPatient_Valid()
         {
-            var mock = new Mock<IManager>();
             PatientApiModel patient = null;
             mock.Setup(x => x.AddPatient(It.IsAny<PatientApiModel>()))
                 .Callback<PatientApiModel>(x => patient = x);
@@ -104,14 +102,14 @@ namespace PatientService.UnitTest.API
             var pat = new PatientApiModel
             {
                 Name = "Test Patient",
-                MobileNumber = "11111",
+                MobileNumber = "1111111111",
                 DateOfBirth = new System.DateTime(2020, 1, 1),
                 BloodGroup = "AB-",
                 Email = "test@ut.com",
                 MedicalIssues = null
             };
 
-            PatientsController pc = new PatientsController(mock.Object);
+            PatientsController pc = new PatientsController(mock.Object, mockLogger.Object);
             var result = pc.Post(pat);
 
             mock.Verify(x => x.AddPatient(It.IsAny<PatientApiModel>()), Times.Once);
@@ -123,16 +121,13 @@ namespace PatientService.UnitTest.API
         [Fact]
         public void AddPatient_InvalidPatientData_ShouldGiveBadRequest()
         {
-            var mock = new Mock<IManager>();
-
-           
             var pat = new PatientApiModel
             {
                 Name = "Test Patient",
                 Email = "test@test.com"
             };
 
-            PatientsController pc = new PatientsController(mock.Object);
+            PatientsController pc = new PatientsController(mock.Object, mockLogger.Object);
             pc.ModelState.AddModelError("MobileNumber", "Mobile Number is required");
             var result = pc.Post(pat);
 
@@ -144,7 +139,6 @@ namespace PatientService.UnitTest.API
         [Fact]
         public void EditPatient_InvalidPatientData_ShouldGiveBadRequest()
         {
-            var mock = new Mock<IManager>();
 
 
             var pat = new PatientApiModel
@@ -153,7 +147,7 @@ namespace PatientService.UnitTest.API
                 Email = "test@test.com"
             };
 
-            PatientsController pc = new PatientsController(mock.Object);
+            PatientsController pc = new PatientsController(mock.Object, mockLogger.Object);
             pc.ModelState.AddModelError("MobileNumber", "Mobile Number is required");
             var result = pc.Post(pat);
 

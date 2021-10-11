@@ -25,5 +25,7 @@ namespace PatientService.Domain.Entities
         [Required]
         public string BloodGroup { get; set; }
         public ICollection<MedicalIssue> MedicalIssues { get; set; }
+
+        //Fluent API 
     }
 }
