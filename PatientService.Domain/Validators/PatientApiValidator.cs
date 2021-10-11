@@ -1,9 +1,6 @@
 ﻿using FluentValidation;
 using PatientService.Domain.ApiModels;
-using PatientService.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace PatientService.Domain.Validators
 {

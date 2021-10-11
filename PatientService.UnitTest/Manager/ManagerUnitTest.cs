@@ -37,7 +37,9 @@ namespace PatientService.UnitTest.Manager
         {
             var mockCache1 = new Mock<IMemoryCache>();
             var pat = GetPatients().Where(x => x.Id == 1).FirstOrDefault();
+            var patApi = GetPatientsApiModel().Where(x => x.Id == 1).FirstOrDefault();
             mock.Setup(x => x.GetPatient(1)).ReturnsAsync(pat);
+            mockMapper.Setup(x => x.Map<PatientApiModel>(pat)).Returns(patApi);
 
             IManager manager = new ManagerImpl(mock.Object, mockMapper.Object, mockCache1.Object);
 
@@ -50,7 +52,9 @@ namespace PatientService.UnitTest.Manager
         public void GetPatient_ShouldReturnPatientName_Valid()
         {
             var pat = GetPatients().Where(x => x.Id == 1).FirstOrDefault();
+            var patApi = GetPatientsApiModel().Where(x => x.Id == 1).FirstOrDefault();
             mock.Setup(x => x.GetPatient(1)).ReturnsAsync(pat);
+            mockMapper.Setup(x => x.Map<PatientApiModel>(pat)).Returns(patApi);
 
             IManager manager = new ManagerImpl(mock.Object, mockMapper.Object, mockCache.Object);
 
@@ -66,14 +70,13 @@ namespace PatientService.UnitTest.Manager
             var mock = new Mock<IPatientRepository>();
             var mockMapper = new Mock<IMapper>();
             var mockCache = new Mock<IMemoryCache>();
-            var mockCacheEntry = new Mock<ICacheEntry>();
 
-            
                 
             var pat = GetPatients().Where(x => x.Id == 1).FirstOrDefault();
+            var patApi = GetPatientsApiModel().Where(x => x.Id == 1).FirstOrDefault();
 
-            
             mock.Setup(x => x.GetPatient(1)).ReturnsAsync(pat);
+            mockMapper.Setup(x => x.Map<PatientApiModel>(pat)).Returns(patApi);
 
             IManager manager = new ManagerImpl(mock.Object, mockMapper.Object, mockCache.Object);
 
@@ -86,7 +89,9 @@ namespace PatientService.UnitTest.Manager
         public void GetPatient_ShouldReturnPatientBloodGroup_Valid()
         {
             var pat = GetPatients().Where(x => x.Id == 1).FirstOrDefault();
+            var patApi = GetPatientsApiModel().Where(x => x.Id == 1).FirstOrDefault();
             mock.Setup(x => x.GetPatient(1)).ReturnsAsync(pat);
+            mockMapper.Setup(x => x.Map<PatientApiModel>(pat)).Returns(patApi);
 
             IManager manager = new ManagerImpl(mock.Object, mockMapper.Object, mockCache.Object);
 
@@ -99,7 +104,9 @@ namespace PatientService.UnitTest.Manager
         public void GetPatient_ShouldReturnPatientDOB_Valid()
         {
             var pat = GetPatients().Where(x => x.Id == 1).FirstOrDefault();
+            var patApi = GetPatientsApiModel().Where(x => x.Id == 1).FirstOrDefault();
             mock.Setup(x => x.GetPatient(1)).ReturnsAsync(pat);
+            mockMapper.Setup(x => x.Map<PatientApiModel>(pat)).Returns(patApi);
 
             IManager manager = new ManagerImpl(mock.Object, mockMapper.Object, mockCache.Object);
 
@@ -108,6 +115,7 @@ namespace PatientService.UnitTest.Manager
 
             Assert.Equal(patient.DateOfBirth, pat.DateOfBirth);
         }
+        
 
         public List<Patient> GetPatients()
         {
@@ -122,7 +130,7 @@ namespace PatientService.UnitTest.Manager
         {
             return new List<PatientApiModel>()
             {
-                new PatientApiModel {Id=1, Name="Roy", MobileNumber = "1234567890", BloodGroup = "O+", DateOfBirth = new System.DateTime(2020,1,1), Email = "roy@world.com", MedicalIssues = null},
+                new PatientApiModel {Id=1, Name="Roy", MobileNumber = "1234567890", BloodGroup = "O+", DateOfBirth = new System.DateTime(2020,2,5), Email = "roy@world.com", MedicalIssues = null},
                 new PatientApiModel {Id=2, Name="Vince", MobileNumber = "6798067890", BloodGroup = "O-", DateOfBirth = new System.DateTime(2019,1,1), Email = "vince@world.com", MedicalIssues = null},
                 new PatientApiModel {Id=3, Name="Root", MobileNumber = "2468067890", BloodGroup = "AB+", DateOfBirth = new System.DateTime(2018,1,1), Email = "root@world.com", MedicalIssues = null}
             };

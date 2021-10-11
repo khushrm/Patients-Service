@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PatientService.Data.shared;
 using PatientService.Domain.Entities;
 using PatientService.Domain.Repository;
+using PatientService.Domain.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +60,7 @@ namespace PatientService.Data.ReposiotryEF
         /// <returns></returns>
         public async Task<Patient> AddPatient(Patient patient)
         {
-            patient.PId = "P-" + Pid.GetNewId();
+            patient.PId = "P-" + PatientIdGenerator.GetNewId();
             
             await _context.Patients.AddAsync(patient);
             await _context.SaveChangesAsync();

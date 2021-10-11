@@ -21,8 +21,8 @@ namespace PatientService.Api
         public void ConfigureServices(IServiceCollection services)
         {
             // extension method for our configuration
+            services.Config(Configuration);
 
-            services.AddMvc();
             services.AddControllers(options =>
             {
                 options.Filters.Add(new ValidationFilter());
@@ -31,8 +31,7 @@ namespace PatientService.Api
                 {
                     options.RegisterValidatorsFromAssemblyContaining<Startup>();
                 });
-            services.AddMemoryCache();
-            services.Config(Configuration);
+            
             
         }
 
